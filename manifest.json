@@ -1,0 +1,9 @@
+
+{
+  "name": "Mypdflibrary Pro",
+  "short_name": "PDF Library",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#28a745"
+}

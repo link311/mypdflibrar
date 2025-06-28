@@ -1,0 +1,26 @@
+
+body {
+  font-family: sans-serif;
+  background: #f0f0f0;
+  padding: 20px;
+  text-align: center;
+}
+input, button {
+  padding: 10px;
+  margin: 10px;
+}
+.pdf-box {
+  background: white;
+  margin: 10px auto;
+  padding: 15px;
+  border-radius: 5px;
+  max-width: 400px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+.download {
+  background: #28a745;
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 5px;
+}

@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mypdflibrary Pro</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json" />
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-storage-compat.js"></script>
+</head>
+<body>
+  <h1>📚 Mypdflibrary Pro</h1>
+  <p>সবার জন্য জ্ঞান ও উন্নয়নের উৎস</p>
+  <div id="pdfList">Loading PDFs...</div>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyADJRY2ed9ejdVLgWUWwwu-mPyAksMV_JY",
+      authDomain: "mypdflibrary-8a142.firebaseapp.com",
+      projectId: "mypdflibrary-8a142",
+      storageBucket: "mypdflibrary-8a142.appspot.com",
+      messagingSenderId: "104919970409",
+      appId: "1:104919970409:web:8ecfacb69f25efe1a1a8f8",
+      measurementId: "G-L32T6GRXLL"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    async function loadPdfs() {
+      const pdfList = document.getElementById("pdfList");
+      pdfList.innerHTML = "";
+      const snapshot = await db.collection("pdfs").orderBy("uploadedAt", "desc").get();
+      snapshot.forEach(doc => {
+        const data = doc.data();
+        const div = document.createElement("div");
+        div.className = "pdf-box";
+        div.innerHTML = `<h3>${data.title}</h3><p>${data.description}</p>
+          <a class="download" href="${data.downloadURL}" target="_blank">⬇️ ডাউনলোড করুন</a>`;
+        pdfList.appendChild(div);
+      });
+    }
+    document.addEventListener("DOMContentLoaded", loadPdfs);
+  </script>
+</body>
+</html>
